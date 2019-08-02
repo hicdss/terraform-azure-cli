@@ -12,6 +12,8 @@ apk add bash py-pip make && \
 apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev && \
 pip install azure-cli && \
 apk del --purge build
+# install az cli extentions
+RUN az extension add --name storage-preview
 
 ENV TF_DEV=true
 ENV TF_RELEASE=true
