@@ -28,6 +28,11 @@ RUN apk add libc6-compat \
   && tar -zxvf /tmp/azcopy -C /tmp/ \
   && mv /tmp/azcopy_linux_amd64*/azcopy /bin/azcopy
 
+# install kubectl
+RUN wget https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl \
+  && chmod +x kubectl \
+  && mv kubectl /usr/local/bin/
+
 # install Helm
 RUN wget https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
   && echo "${HELM_SHA256}  helm-v${HELM_VERSION}-linux-amd64.tar.gz" | sha256sum -c - \
